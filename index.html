@@ -469,9 +469,9 @@
             // Rotación en X: -90 grados para levantarlo si venía tumbado sobre la base
             objeto.rotation.x = -90; 
             // Rotación en Y: 180 grados para forzar vista frontal hacia el canvas
-            objeto.rotation.y = 90; 
+            objeto.rotation.y = 0; 
             // Rotación en Z: 0 grados para mantener nivelados los laterales de forma exacta
-            objeto.rotation.z = 0; 
+            objeto.rotation.z = 90; 
 
             // 2. Forzar actualización inmediata del espacio cartesiano del objeto
             objeto.updateMatrixWorld(true);
