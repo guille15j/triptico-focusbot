@@ -288,22 +288,22 @@
             <div class="brand-box">
                 <h2>Focus.Bot</h2>
                 <div class="eslogan">DEEP IN YOUR FOCUS</div>
-                <p class="intro-p">Sistema IoT integral compuesto por un dispositivo robótico físico, infraestructura backend y aplicación multiplataforma para la gestión de la productividad.</p>
+                <p class="intro-p">Sistema IoT integral compuesto por un dispositivo robótico físico, infraestructura backend y aplicación multiplataforma para la gestión de la productividad[cite: 488].</p>
                 
                 <ul class="specs-lista">
-                    <li>Unidad Central: ESP32</li>
-                    <li>Backend: Flask (Python)</li>
-                    <li>Base de Datos: PostgreSQL</li>
-                    <li>App Móvil: React Native (Expo)</li>
-                    <li>Protocolo Red: MQTT / REST</li>
+                    <li>Unidad Central: ESP32 [cite: 561]</li>
+                    <li>Backend: Flask (Python) [cite: 569]</li>
+                    <li>Base de Datos: PostgreSQL [cite: 490]</li>
+                    <li>App Móvil: React Native (Expo) [cite: 566, 568]</li>
+                    <li>Protocolo Red: MQTT / REST [cite: 495, 528]</li>
                 </ul>
             </div>
             
             <div class="autor-box">
                 <p>DEFENSA DE PROYECTO</p>
-                <div class="nombre">Guillermo Santos Sánchez</div>
-                <p style="margin-top: 3px; font-weight: 600; color: var(--primary);">Desarrollo de Aplicaciones Multiplataforma</p>
-                <p style="font-size: 11px; opacity: 0.8;">I.E.S. Ítaca</p>
+                <div class="nombre">Guillermo Santos Sánchez [cite: 460]</div>
+                <p style="margin-top: 3px; font-weight: 600; color: var(--primary);">Desarrollo de Aplicaciones Multiplataforma [cite: 464]</p>
+                <p style="font-size: 11px; opacity: 0.8;">I.E.S. Ítaca [cite: 463]</p>
             </div>
         </div>
 
@@ -315,20 +315,20 @@
                     <div class="tech-stack">
                         <div class="tech-item">
                             <h4>Infraestructura Backend con Flask</h4>
-                            <p>El servidor está implementado en Python utilizando el framework Flask, organizando la API REST mediante blueprints (auth, activities, bot, history, users) protegidos por tokens de acceso JWT y con esquemas de validación de robustez basados en Pydantic.</p>
+                            <p>El servidor está implementado en Python utilizando el framework Flask, organizando la API REST mediante blueprints (auth, activities, bot, history, users) protegidos por tokens de acceso JWT y con esquemas de validación de robustez basados en Pydantic[cite: 298, 364].</p>
                             <div class="sub-items">
                                 <div>• Endpoints de Historial: <span>GET /history/</span> y <span>GET /history/&lt;id&gt;</span></div>
                             </div>
                         </div>
                         <div class="tech-item">
                             <h4>Arquitectura y Tablas en PostgreSQL (Supabase)</h4>
-                            <p>La base de datos relacional está alojada en Supabase y consta de un total de 5 tablas con enumeradores estructurados para la asignación de valores fijos:</p>
+                            <p>La base de datos relacional está alojada en Supabase [cite: 400] y consta de tablas estructuradas con restricciones e integridad para salvaguardar el histórico[cite: 261, 363]:</p>
                             <div class="sub-items">
-                                <div>• <b>Users</b>: Almacena información relevante de usuarios, incluyendo datos referidos a dificultades de foco registradas (TDA, TDH, TDHA...) para la proposición de planes adecuados.</div>
-                                <div>• <b>Activities</b>: Guarda los datos de las actividades programadas por los usuarios.</div>
-                                <div>• <b>Activity_Types</b>: Maneja la información sobre el tipo aplicado y los tiempos de trabajo y descanso.</div>
-                                <div>• <b>Bots</b>: Contiene la información relativa al robot que pertenece al usuario.</div>
-                                <div>• <b>Histories</b>: Almacena los reportes generados con indicadores precalculados por rangos de fechas.</div>
+                                <div>• <b>Users</b>: Almacena credenciales, perfiles y registros de foco[cite: 363].</div>
+                                <div>• <b>Activities</b>: Guarda la configuración de las tareas programadas[cite: 363].</div>
+                                <div>• <b>Activity_Types</b>: Maneja los tiempos correspondientes a trabajo y descanso[cite: 365].</div>
+                                <div>• <b>Bots</b>: Contiene la información y vinculación relativa al robot físico[cite: 247, 363].</div>
+                                <div>• <b>Histories</b>: Almacena los reportes agregados generados por rangos de fechas[cite: 366].</div>
                             </div>
                         </div>
                     </div>
@@ -344,24 +344,25 @@
                     <div class="tech-stack">
                         <div class="tech-item">
                             <h4>Módulos Electrónicos del Robot</h4>
-                            <p>El núcleo electrónico está integrado por el microcontrolador ESP32 (placa NodeMCU) como unidad central de procesamiento acoplado a periféricos específicos:</p>
+                            <p>El núcleo electrónico está integrado por el microcontrolador ESP32 (placa NodeMCU) acoplado de manera óptima a periféricos dedicados[cite: 103, 357]:</p>
                             <div class="sub-items">
-                                <div>• Pantalla circular TFT (controlador GC9A01A) comunicada mediante el bus SPI.</div>
-                                <div>• Módulo de audio DFPlayer Mini comunicado mediante bus UART1 con salida a un altavoz.</div>
-                                <div>• Sensor táctil capacitivo TTP223 para el reconocimiento físico de gestos.</div>
+                                <div>• Pantalla circular TFT de 1.28" (controlador GC9A01) mediante bus SPI[cite: 105].</div>
+                                <div>• Módulo de audio DFPlayer Mini comunicado mediante bus UART con salida a altavoz de 4 Ω[cite: 105].</div>
+                                <div>• Sensor táctil capacitivo TTP223 para el reconocimiento gestual autónomo[cite: 105].</div>
                             </div>
                         </div>
                         <div class="tech-item">
-                            <h4>Protecciones de Hardware Implementadas</h4>
-                            <p>Inserción de una resistencia de 1 kΩ en la línea RX entre el DFPlayer Mini y el ESP32 para eliminar ruidos por picos de tensión residual en la comunicación serie. Uso de un transistor BJT BC547 actuando como mecanismo Low-Side Switch para conmutar el pin BLK de la pantalla y apagar físicamente la retroiluminación en modo SLEEP.</p>
+                            <h4>Protecciones de Hardware y Eficiencia</h4>
+                            <p>Inserción de una resistencia de 1 kΩ en la línea RX del DFPlayer Mini para erradicar ruidos por picos de tensión residual[cite: 105, 316]. Uso estratégico de un transistor NPN BC547 actuando como interruptor Low-Side para conmutar por hardware el pin BLK de la pantalla, logrando apagar físicamente la retroiluminación en modo SLEEP para maximizar el ahorro energético[cite: 105, 125, 128].</p>
                         </div>
                         <div class="tech-item">
                             <h4>Máquina de Estados Finitos (FSM)</h4>
-                            <p>El firmware en C++ implementa una FSM con nueve estados para controlar el comportamiento autónomo del robot (gestión de temporizadores, ciclos y cambios de expresión visual sin depender de comunicación continua):</p>
+                            <p>El firmware en C++ implementa una FSM jerárquica para controlar de forma asíncrona el comportamiento y expresiones del bot[cite: 529, 563]:</p>
                             <div class="sub-items">
-                                <div>• <b>IDLE</b>: Estado de espera con parpadeo de ojos fijos (3500ms abiertos, 150ms cerrados).</div>
-                                <div>• <b>RQST</b>: Procesamiento y recepción del comando enviado desde el servidor.</div>
-                                <div>• <b>SLEEP</b>: Pantalla completamente apagada por hardware para ahorro de energía.</div>
+                                <div>• <b>IDLE</b>: Espera activa con animación de parpadeo cíclico (3500ms abierto / 150ms cerrado)[cite: 132, 135].</div>
+                                <div>• <b>RQST</b>: Petición entrante, alterna un ojo abierto y otro entrecerrado de forma dinámica[cite: 137, 138].</div>
+                                <div>• <b>FOCUS/REST</b>: Bloques de trabajo y descanso controlando arcos de progreso geométricos[cite: 140, 142, 144, 145].</div>
+                                <div>• <b>SLEEP</b>: Apagado energético y desactiva la retroiluminación tras 10 minutos de inactividad[cite: 151, 216].</div>
                             </div>
                         </div>
                     </div>
@@ -377,18 +378,20 @@
                     <div class="tech-stack">
                         <div class="tech-item">
                             <h4>Punto de Acceso y Portal Cautivo</h4>
-                            <p>Al arrancar, si el dispositivo no se conecta, entra en modo Access Point (estado AP) desplegando un Portal Cautivo. Este ofrece una página web interna que escanea e identifica las redes WiFi disponibles (banda de 2.4 GHz) para introducir las credenciales de forma autónoma sin alterar el firmware, gestionando hasta tres intentos de conexión.</p>
+                            <p>Al arrancar en ausencia de red, entra en modo Access Point (estado AP) levantando un servidor DNS interno y un Portal Cautivo[cite: 226, 361]. Proporciona un formulario HTML nativo incrustado en memoria flash que escanea el entorno (redes 2.4 GHz) para guardar de manera persistente en LittleFS las credenciales nuevas[cite: 227, 229, 358].</p>
                         </div>
                         <div class="tech-item">
                             <h4>Sincronización Bidireccional MQTT</h4>
-                            <p>Sincronización en tiempo real mediante arquitectura Publish/Subscribe a través de un bróker MQTT central, aislando las vías de comunicación por dispositivo a través de tópicos dedicados basados en identificadores de hardware.</p>
+                            <p>Sincronización en tiempo real mediante arquitectura Publish/Subscribe a través de un bróker MQTT aislado por la dirección MAC del hardware[cite: 73, 74, 244]:</p>
                             <div class="sub-items">
-                                <div>• Tópico de publicación de estado del bot: <span>focusapp/{mac}/status</span></div>
+                                <div>• Comandos recibidos (Bot se suscribe): <span>focusapp/{mac}/command</span> [cite: 74]</div>
+                                <div>• Cambios de estado (Bot publica): <span>focusapp/{mac}/status</span> [cite: 75]</div>
+                                <div>• Resultados de sesión (Bot publica): <span>focusapp/{mac}/result</span> [cite: 77]</div>
                             </div>
                         </div>
                         <div class="tech-item">
-                            <h4>Flujo de Ejecución de una Actividad</h4>
-                            <p>El backend actúa como puente e inyecta los comandos MQTT hacia el robot. Una vez recibida la instrucción, el dispositivo asume la ejecución completa de la sesión. Al finalizar el ciclo o interactuar de manera táctil con el sensor, calcula los resultados y publica la actualización de estado, la cual es capturada por el servidor Flask para persistir de manera íntegra la traza en PostgreSQL y permitir la posterior consulta de históricos.</p>
+                            <h4>Integridad en el Flujo de Ejecución</h4>
+                            <p>La inyección del comando de inicio encapsula parámetros en formato JSON estructurado conteniendo duraciones y metadatos de audio[cite: 268]. El dispositivo asume de forma local y atómica la ejecución del tiempo, y al finalizar calcula las métricas publicando el resultado, garantizando la persistencia íntegra de la traza de productividad aun ante microcortes temporales de red[cite: 262, 328].</p>
                         </div>
                     </div>
                 </div>
@@ -411,16 +414,16 @@
             paneles[index].classList.add('active');
         }
 
-        // MOTOR 3D CON CORRECCIÓN DE ESCALA INTELIGENTE Y CÁMARA LEJANA
+        // CONTROLADOR MOTOR 3D - THREEE.JS
         const contenedor3D = document.getElementById('container-3d');
         let escena, camara, renderizador, controles;
 
         function inicializar3D() {
             escena = new THREE.Scene();
             
-            // Colocamos la cámara inicialmente más atrás (distancia 8) para que contenga modelos grandes
+            // Encuadre y relación de aspecto de la cámara
             camara = new THREE.PerspectiveCamera(40, contenedor3D.clientWidth / contenedor3D.clientHeight, 0.1, 1000);
-            camara.position.set(0, 1.5, 7);
+            camara.position.set(0, 1.2, 7);
 
             renderizador = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderizador.setSize(contenedor3D.clientWidth, contenedor3D.clientHeight);
@@ -432,10 +435,11 @@
             controles.dampingFactor = 0.05;
             controles.maxPolarAngle = Math.PI / 1.5;
             
-            // Restricciones de zoom para que el usuario no rompa la vista en el iPad Air
-            controles.minDistance = 2;
-            controles.maxDistance = 15;
+            // Parámetros de seguridad de zoom para prevenir roturas visuales en iPad
+            controles.minDistance = 2.5;
+            controles.maxDistance = 12;
 
+            // Iluminación equilibrada de la escena
             const luzAmbiental = new THREE.AmbientLight(0xffffff, 0.9);
             escena.add(luzAmbiental);
 
@@ -443,6 +447,7 @@
             luzDireccional.position.set(5, 10, 7);
             escena.add(luzDireccional);
 
+            // Carga encadenada de archivos de modelado
             const mtlLoader = new THREE.MTLLoader();
             mtlLoader.setPath('multimedia/');
             mtlLoader.load('modelo.mtl', function (materiales) {
@@ -458,24 +463,34 @@
             animate();
         }
 
-        // FUNCIÓN CLAVE: Mide el tamaño real del chasis (.obj) y lo escala proporcionalmente para la caja
+        // LÓGICA DE CORRECCIÓN TRIGONOMÉTRICA, ORIENTACIÓN Y AUTOESCALADO
         function ajustarYEscalarModelo(objeto) {
+            // 1. Corregir orientación inicial de exportación CAD (Enderezar y poner de frente)
+            // Rotación en X: -90 grados para levantarlo si venía tumbado sobre la base
+            objeto.rotation.x = -Math.PI / 2; 
+            // Rotación en Y: 180 grados para forzar vista frontal hacia el canvas
+            objeto.rotation.y = Math.PI; 
+            // Rotación en Z: 0 grados para mantener nivelados los laterales de forma exacta
+            objeto.rotation.z = 0; 
+
+            // 2. Forzar actualización inmediata del espacio cartesiano del objeto
+            objeto.updateMatrixWorld(true);
+
+            // 3. Medir las proporciones reales sobre el objeto ya reorientado
             const box = new THREE.Box3().setFromObject(objeto);
             const size = box.getSize(new THREE.Vector3());
             const center = box.getCenter(new THREE.Vector3());
             
-            // Centrar el objeto en el origen de coordenadas (0,0,0)
+            // 4. Centrar los desfases geométricos exactamente en el origen (0,0,0)
             objeto.position.sub(center);
             
-            // Encontrar la dimensión más grande del modelo de Fusion360
+            // 5. Normalizar tamaño dinámicamente basándonos en el eje dominante del chasis
             const maxDim = Math.max(size.x, size.y, size.z);
-            
-            // Queremos que el bot ocupe un tamaño normalizado de ~2.8 unidades en el canvas de Three.js
-            const escalaDeseada = 2.8 / maxDim;
+            const escalaDeseada = 2.8 / maxDim; // El modelo ocupará exactamente 2.8 unidades de escena
             objeto.scale.set(escalaDeseada, escalaDeseada, escalaDeseada);
             
+            // 6. Añadir el chasis completamente corregido a la escena interactiva
             escena.add(objeto);
-            objeto.rotation.y = Math.PI; // Orientación inicial frontal
         }
 
         function cargarObjSinMaterial() {
@@ -483,7 +498,13 @@
             objLoader.setPath('multimedia/');
             objLoader.load('modelo.obj', function (objeto) {
                 objeto.traverse(function (child) {
-                    if (child.isMesh) child.material = new THREE.MeshStandardMaterial({color: 0x2E7D7A, roughness: 0.5});
+                    if (child.isMesh) {
+                        child.material = new THREE.MeshStandardMaterial({
+                            color: 0x2E7D7A, 
+                            roughness: 0.4,
+                            metalness: 0.1
+                        });
+                    }
                 });
                 ajustarYEscalarModelo(objeto);
             }, null, () => {
