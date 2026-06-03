@@ -12,7 +12,7 @@
             --background: #F4F7F7;
             --surface: #FFFFFF;
             --text: #1F2A2E;
-            --textLight: #6B7C85;
+            --textLight: #566770;
             --placeholder: #AAB8BE;
             --accent-glow: rgba(46, 125, 122, 0.15);
         }
@@ -36,7 +36,7 @@
         }
 
         header {
-            height: 70px;
+            height: 75px;
             background-color: var(--surface);
             border-bottom: 1px solid rgba(170, 184, 190, 0.4);
             display: flex;
@@ -48,7 +48,7 @@
         }
 
         .logo-area h1 {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 800;
             color: var(--primary);
         }
@@ -62,13 +62,13 @@
             background: var(--background);
             border: 1px solid var(--placeholder);
             color: var(--textLight);
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 30px;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.25s ease;
-            min-width: 180px;
+            min-width: 200px;
             text-align: center;
             -webkit-tap-highlight-color: transparent;
         }
@@ -83,8 +83,8 @@
         .triptico-container {
             flex: 1;
             display: grid;
-            grid-template-columns: 340px 1fr;
-            height: calc(100vh - 70px);
+            grid-template-columns: 360px 1fr;
+            height: calc(100vh - 75px);
             overflow: hidden;
         }
 
@@ -98,35 +98,35 @@
         }
 
         .brand-box h2 {
-            font-size: 36px;
+            font-size: 40px;
             font-weight: 900;
             color: var(--text);
             line-height: 1;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .eslogan {
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 700;
             color: var(--primary);
             letter-spacing: 2px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .intro-p {
-            font-size: 13.5px;
+            font-size: 16px;
             color: var(--textLight);
             line-height: 1.6;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .specs-lista {
             list-style: none;
-            font-size: 12px;
+            font-size: 15px;
             color: var(--text);
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
         }
 
         .specs-lista li::before {
@@ -138,18 +138,18 @@
         .autor-box {
             background: var(--background);
             border: 1px solid rgba(170, 184, 190, 0.3);
-            padding: 18px;
+            padding: 20px;
             border-radius: 14px;
         }
 
         .autor-box p {
-            font-size: 12px;
+            font-size: 13px;
             color: var(--textLight);
             margin-bottom: 4px;
         }
 
         .autor-box .nombre {
-            font-size: 15px;
+            font-size: 17px;
             font-weight: 700;
             color: var(--text);
         }
@@ -187,11 +187,11 @@
             flex-direction: column;
             justify-content: flex-start;
             overflow-y: auto;
-            padding-right: 10px;
+            padding-right: 15px;
         }
 
         .info-tecnica h3 {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 800;
             margin-bottom: 20px;
             color: var(--text);
@@ -202,13 +202,13 @@
         .tech-stack {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
 
         .tech-item h4 {
-            font-size: 15px;
+            font-size: 18px;
             color: var(--primary);
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -216,27 +216,72 @@
         }
 
         .tech-item p {
-            font-size: 13.5px;
+            font-size: 16px;
             color: var(--textLight);
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .sub-items {
-            margin-top: 6px;
+            margin-top: 10px;
             margin-left: 15px;
-            font-size: 12.5px;
+            font-size: 15px;
             color: var(--text);
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
         }
 
         .sub-items span {
             font-family: monospace;
             background: rgba(46, 125, 122, 0.08);
             color: var(--primary);
-            padding: 1px 5px;
+            padding: 2px 6px;
             border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .endpoint-block {
+            background: #F8FAFA;
+            border-left: 4px solid var(--primary);
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .endpoint-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .endpoint-title .method {
+            color: #FFFFFF;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 6px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .method.post { background: #10B981; }
+        .method.get { background: #3B82F6; }
+        .method.patch { background: #F59E0B; }
+        .method.delete { background: #EF4444; }
+
+        .endpoint-desc {
+            font-size: 14.5px;
+            color: var(--textLight);
+            margin-bottom: 6px;
+        }
+
+        .endpoint-responses {
+            font-size: 13.5px;
+            border-top: 1px dashed rgba(170, 184, 190, 0.4);
+            padding-top: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
 
         .visual-box {
@@ -302,42 +347,326 @@
             <div class="autor-box">
                 <p>DEFENSA DE PROYECTO</p>
                 <div class="nombre">Guillermo Santos Sánchez</div>
-                <p style="margin-top: 3px; font-weight: 600; color: var(--primary);">Desarrollo de Aplicaciones Multiplataforma</p>
-                <p style="font-size: 11px; opacity: 0.8;">I.E.S. Ítaca</p>
+                <p style="margin-top: 3px; font-weight: 600; color: var(--primary); font-size: 14px;">Desarrollo de Aplicaciones Multiplataforma</p>
             </div>
         </div>
 
         <div class="col-dinamica">
 
+            <!-- PANEL 1: DOCUMENTACIÓN COMPLETA DE ENDPOINTS -->
             <div class="panel active">
                 <div class="info-tecnica">
-                    <h3>Servidor Backend y Modelo de Datos</h3>
+                    <h3>Especificación de la API REST</h3>
                     <div class="tech-stack">
+                        
+                        <!-- MÓDULO AUTENTICACIÓN -->
                         <div class="tech-item">
-                            <h4>Infraestructura Backend con Flask</h4>
-                            <p>El servidor está implementado en Python utilizando el framework Flask, organizando la API REST mediante blueprints (auth, activities, bot, history, users) protegidos por tokens de acceso JWT y con esquemas de validación de robustez basados en Pydantic.</p>
-                            <div class="sub-items">
-                                <div>• Endpoints de Historial: <span>GET /history/</span> y <span>GET /history/&lt;id&gt;</span></div>
+                            <h4>Autenticación y Registro (/auth)</h4>
+                            
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method post">POST</span>/auth/authcheck</div>
+                                <div class="endpoint-desc">Comprueba que el endpoint de autenticación está activo.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: { "message": "Endpoint de autenticación listo" }</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method post">POST</span>/auth/register</div>
+                                <div class="endpoint-desc">Registra un nuevo usuario. Envía código de verificación por correo.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>201</b>: { "message": "Usuario creado correctamente", "token": "jwt", "id": 1 }</div>
+                                    <div><b>400</b>: Faltan datos obligatorios / Correo ya registrado / Nickname ya registrado</div>
+                                    <div><b>500</b>: Error enviando el correo de verificación / Error registrando el usuario</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method post">POST</span>/auth/login</div>
+                                <div class="endpoint-desc">Autentica al usuario con email/nickname y contraseña.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: { "message": "Login exitoso", "token": "jwt", "user": { ... } }</div>
+                                    <div><b>400</b>: Faltan credenciales</div>
+                                    <div><b>401</b>: Usuario no registrado / Contraseña inválida / Cuenta de Google (sin contraseña local)</div>
+                                    <div><b>403</b>: Cuenta no verificada — debe verificar el correo primero</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method post">POST</span>/auth/change/password</div>
+                                <div class="endpoint-desc">Restablece la contraseña del usuario.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: { "message": "Cambio de contraseña completado" }</div>
+                                    <div><b>400</b>: Faltan credenciales</div>
+                                    <div><b>401</b>: Usuario no registrado en el sistema</div>
+                                    <div><b>422</b>: No puedes usar la misma contraseña</div>
+                                    <div><b>500</b>: Error actualizando la contraseña</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method post">POST</span>/auth/verify</div>
+                                <div class="endpoint-desc">Verifica el email con el código de 6 dígitos recibido por correo.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: { "message": "Correo verificado correctamente.", "token": "jwt", "user": { ... } } o cuenta ya verificada</div>
+                                    <div><b>400</b>: Cuerpo JSON requerido / Sin código pendiente / Código incorrecto</div>
+                                    <div><b>404</b>: Usuario no encontrado</div>
+                                    <div><b>500</b>: Error verificando el correo</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method post">POST</span>/auth/resend-code</div>
+                                <div class="endpoint-desc">Reenvía el código de verificación por correo.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: { "message": "Nuevo código enviado. Revisa tu correo." } o cuenta ya verificada</div>
+                                    <div><b>404</b>: Usuario no encontrado</div>
+                                    <div><b>500</b>: Error enviando el correo / Error reenviando el código</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method delete">DELETE</span>/auth/delete-account <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Elimina permanentemente la cuenta del usuario autenticado y todos sus datos.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: { "message": "Cuenta eliminada correctamente" }</div>
+                                    <div><b>404</b>: Usuario no encontrado</div>
+                                    <div><b>500</b>: Error al eliminar la cuenta</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method post">POST</span>/auth/google</div>
+                                <div class="endpoint-desc">Autentica o registra un usuario mediante Google OAuth2 (token de Google).</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: { "message": "Inicio de sesión con Google completado", "token": "jwt", "user": { ... } }</div>
+                                    <div><b>400</b>: Cuerpo JSON requerido / Token de Google no proporcionado</div>
+                                    <div><b>401</b>: Token de Google inválido o expirado</div>
+                                    <div><b>500</b>: Error en autenticación con Google</div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- MÓDULO USUARIOS -->
                         <div class="tech-item">
-                            <h4>Arquitectura y Tablas en PostgreSQL (Supabase)</h4>
-                            <p>La base de datos relacional está alojada en Supabase y consta de tablas estructuradas con restricciones e integridad para salvaguardar el histórico:</p>
-                            <div class="sub-items">
-                                <div>• <b>Users</b>: Almacena credenciales, perfiles y registros de foco.</div>
-                                <div>• <b>Activities</b>: Guarda la configuración de las tareas programadas.</div>
-                                <div>• <b>Activity_Types</b>: Maneja los tiempos correspondientes a trabajo y descanso.</div>
-                                <div>• <b>Bots</b>: Contiene la información y vinculación relativa al robot físico.</div>
-                                <div>• <b>Histories</b>: Almacena los reportes agregados generados por rangos de fechas.</div>
+                            <h4>Gestión de Usuarios (/users)</h4>
+                            
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method patch">PATCH</span>/users/update <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Actualiza parcialmente el perfil del usuario autenticado.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: { "message": "Usuario actualizado correctamente." }</div>
+                                    <div><b>400</b>: Correo ya registrado por otro usuario / Nickname ya registrado por otro usuario</div>
+                                    <div><b>404</b>: Usuario no encontrado</div>
+                                    <div><b>500</b>: Error actualizando el usuario</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method get">GET</span>/users/user <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Obtiene los datos del perfil del usuario autenticado.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: { "user": { user_id, first_name, last_name, nickname, email, phone, timezone, profile_img, name_detail, description_detail, severity } }</div>
+                                    <div><b>404</b>: Usuario no encontrado</div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- MÓDULO ACTIVIDADES -->
+                        <div class="tech-item">
+                            <h4>Módulo de Actividades (/activities)</h4>
+                            
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method get">GET</span>/activities/ <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Lista todas las actividades del usuario autenticado o filtra por ID concreto.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: Array de actividades del usuario / Objeto con los datos de la actividad</div>
+                                    <div><b>401</b>: Token inválido o no proporcionado</div>
+                                    <div><b>404</b>: Actividad no encontrada o no pertenece al usuario</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method post">POST</span>/activities/activity <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Crea una nueva actividad para el usuario autenticado.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>201</b>: Actividad creada correctamente</div>
+                                    <div><b>400</b>: Datos de actividad inválidos</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method patch">PATCH</span>/activities/ <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Actualiza parcialmente una actividad existente.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: Actividad actualizada</div>
+                                    <div><b>404</b>: Actividad no encontrada</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method delete">DELETE</span>/activities/ <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Elimina una actividad del usuario autenticado.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: ActividadBox eliminada correctamente</div>
+                                    <div><b>404</b>: Actividad no encontrada</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method get">GET</span>/activities/type <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Lista todos los tipos de actividad del usuario.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: Array de tipos de actividad</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method post">POST</span>/activities/type <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Crea un nuevo tipo de actividad.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>201</b>: Tipo de actividad creado</div>
+                                    <div><b>400</b>: Datos inválidos</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method patch">PATCH</span>/activities/type/ <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Actualiza parcialmente un tipo de actividad.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: Tipo actualizado</div>
+                                    <div><b>404</b>: Tipo no encontrado</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method delete">DELETE</span>/activities/type/ <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Elimina un tipo de actividad.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: Tipo eliminado</div>
+                                    <div><b>404</b>: Tipo no encontrado</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- MÓDULO HISTORIAL -->
+                        <div class="tech-item">
+                            <h4>Analítica e Historial (/history)</h4>
+                            
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method get">GET</span>/history/check</div>
+                                <div class="endpoint-desc">Comprueba que la API de historial está activa.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: { "message": "API de historial lista" }</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method post">POST</span>/history/calculate <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Calcula y guarda un registro de historial para el rango de fechas indicado.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: Registro calculado y guardado</div>
+                                    <div><b>400</b>: Rango de fechas inválido</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method get">GET</span>/history/weekly-dashboard <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Devuelve los datos estructurados del dashboard semanal del usuario.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: Datos del dashboard semanal</div>
+                                    <div><b>404</b>: Sin datos para la semana actual</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method get">GET</span>/history/ <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Lista todos los registros de historial u obtiene uno concreto mediante su ID.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: Array de registros / Objeto con los datos del registro</div>
+                                    <div><b>404</b>: Registro no encontrado</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method get">GET</span>/history/recommendations <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Devuelve recomendaciones personalizadas basadas en el historial del usuario.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: Objeto con recomendaciones dinámicas</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- MÓDULO BOT -->
+                        <div class="tech-item">
+                            <h4>Control y Sincronización del Dispositivo (/bot)</h4>
+                            
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method get">GET</span>/bot/check</div>
+                                <div class="endpoint-desc">Comprueba que la API de bot está activa.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: { "msg": "Api bot lista" }</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method post">POST</span>/bot/pair <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Vincula un Focus.Bot al usuario autenticado mediante su dirección MAC.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>201</b>: { "message": "Focus.Bot vinculado con éxito", "bot": { id, name } }</div>
+                                    <div><b>403</b>: El bot ya pertenece a otro usuario</div>
+                                    <div><b>500</b>: Error al guardar en la base de datos</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method get">GET</span>/bot/getByUser <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Lista todos los bots vinculados al usuario autenticado.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: { "bots": [ { bot_id, name, mac_address, status, last_sync } ] } o lista vacía</div>
+                                    <div><b>404</b>: Usuario no registrado en el sistema</div>
+                                    <div><b>500</b>: Error en la carga de bots</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method patch">PATCH</span>/bot/ <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Actualiza parcialmente los datos de un bot (nombre, configuraciones).</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: { "message": "Bot actualizado con éxito." }</div>
+                                    <div><b>404</b>: Bot no encontrado</div>
+                                    <div><b>500</b>: Error editando el bot</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method delete">DELETE</span>/bot/ <small style="color:var(--primary)">@token_required</small></div>
+                                <div class="endpoint-desc">Desvincula (borrado lógico) un bot del usuario autenticado.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: { "message": "Bot desvinculado con éxito" }</div>
+                                    <div><b>404</b>: Bot no encontrado</div>
+                                    <div><b>500</b>: Error al desvincular el Bot</div>
+                                </div>
+                            </div>
+
+                            <div class="endpoint-block">
+                                <div class="endpoint-title"><span class="method post">POST</span>/bot/command</div>
+                                <div class="endpoint-desc">Envía un comando MQTT de prueba a un Focus.Bot identificado por su MAC address.</div>
+                                <div class="endpoint-responses">
+                                    <div><b>200</b>: { "message": "Comando enviado a " }</div>
+                                    <div><b>503</b>: No se pudo reconectar con el Broker MQTT</div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="visual-box">
-                    <img src="multimedia/esquema_bd.png" alt="Esquema Base de Datos" class="esquema-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<p style=\'color:var(--textLight);font-size:13px;\'>[ Render del Diagrama de la Base de Datos PostgreSQL ]</p>'">
+                    <img src="multimedia/esquema_bd.png" alt="Esquema Base de Datos" class="esquema-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<p style=\'color:var(--textLight);font-size:15px;\'>[ Render del Diagrama de la Base de Datos PostgreSQL ]</p>'">
                 </div>
             </div>
 
+            <!-- PANEL 2: HARDWARE Y FIRMWARE -->
             <div class="panel">
                 <div class="info-tecnica">
                     <h3>Desarrollo Hardware y Arquitectura de Firmware</h3>
@@ -372,6 +701,7 @@
                 </div>
             </div>
 
+            <!-- PANEL 3: CONECTIVIDAD & RED (LENGUAJE SUTIL Y SIN PALABRA ATÓMICA) -->
             <div class="panel">
                 <div class="info-tecnica">
                     <h3>Capa de Red y Protocolos de Comunicación</h3>
@@ -391,12 +721,12 @@
                         </div>
                         <div class="tech-item">
                             <h4>Integridad en el Flujo de Ejecución</h4>
-                            <p>La inyección del comando de inicio encapsula parámetros en formato JSON estructurado conteniendo duraciones y metadatos de audio. El dispositivo asume de forma local y atómica la ejecución del tiempo, y al finalizar calcula las métricas publicando el resultado, garantizando la persistencia íntegra de la traza de productividad aun ante microcortes temporales de red.</p>
+                            <p>La inyección del comando de inicio encapsula parámetros en formato JSON estructurado conteniendo duraciones y metadatos de audio. El dispositivo asume de forma local e independiente la ejecución del tiempo, y al finalizar calcula las métricas publicando el resultado, garantizando la persistencia íntegra de la traza de productividad aun ante microcortes temporales de red.</p>
                         </div>
                     </div>
                 </div>
                 <div class="visual-box">
-                    <img src="multimedia/flujo_mqtt.png" alt="Flujo de Comunicación" class="esquema-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<p style=\'color:var(--textLight);font-size:13px;\'>[ Render del Diagrama de Flujo y Arquitectura de Comunicación ]</p>'">
+                    <img src="multimedia/flujo_mqtt.png" alt="Flujo de Comunicación" class="esquema-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<p style=\'color:var(--textLight);font-size:15px;\'>[ Render del Diagrama de Flujo y Arquitectura de Comunicación ]</p>'">
                 </div>
             </div>
 
@@ -419,6 +749,8 @@
         let escena, camara, renderizador, controles;
 
         function inicializar3D() {
+            if (!contenedor3D) return;
+            
             escena = new THREE.Scene();
             
             camara = new THREE.PerspectiveCamera(40, contenedor3D.clientWidth / contenedor3D.clientHeight, 0.1, 1000);
@@ -433,9 +765,6 @@
             controles.enableDamping = true;
             controles.dampingFactor = 0.05;
             controles.maxPolarAngle = Math.PI / 1.5;
-            
-            controles.minDistance = 2.5;
-            controles.maxDistance = 12;
 
             const luzAmbiental = new THREE.AmbientLight(0xffffff, 0.9);
             escena.add(luzAmbiental);
@@ -444,36 +773,17 @@
             luzDireccional.position.set(5, 10, 7);
             escena.add(luzDireccional);
 
-            const mtlLoader = new THREE.MTLLoader();
-            mtlLoader.setPath('multimedia/');
-            mtlLoader.load('modelo.mtl', function (materiales) {
-                materiales.preload();
-                const objLoader = new THREE.OBJLoader();
-                objLoader.setMaterials(materiales);
-                objLoader.setPath('multimedia/');
-                objLoader.load('modelo.obj', function (objeto) {
-                    ajustarYEscalarModelo(objeto);
-                }, null, () => cargarObjSinMaterial());
-            }, () => cargarObjSinMaterial());
-
+            cargarObjSinMaterial();
             animate();
         }
 
-        // FUNCIÓN CON LOS PARÁMETROS DE ROTACIÓN SOLICITADOS (CONVERTIDOS A RADIANES)
         function ajustarYEscalarModelo(objeto) {
-            // objeto.rotation.x = -90 grados
             objeto.rotation.x = -Math.PI / 2; 
-            
-            // objeto.rotation.y = 0 grados
             objeto.rotation.y = 0; 
-            
-            // objeto.rotation.z = 90 grados
             objeto.rotation.z = Math.PI / 2; 
 
-            // Forzar actualización de la matriz del objeto con los nuevos ángulos
             objeto.updateMatrixWorld(true);
 
-            // Calcular proporciones e incorporar el auto-centrado
             const box = new THREE.Box3().setFromObject(objeto);
             const size = box.getSize(new THREE.Vector3());
             const center = box.getCenter(new THREE.Vector3());
@@ -502,7 +812,7 @@
                 });
                 ajustarYEscalarModelo(objeto);
             }, null, () => {
-                contenedor3D.innerHTML = "<p style='color:var(--textLight); text-align:center; padding: 20px; font-size:13px;'>[ Visualización 3D Interactiva del Chasis ]</p>";
+                contenedor3D.innerHTML = "<p style='color:var(--textLight); text-align:center; padding: 20px; font-size:15px;'>[ Visualización 3D Interactiva del Chasis ]</p>";
             });
         }
 
@@ -513,7 +823,7 @@
         }
 
         window.addEventListener('resize', () => {
-            if(camara && renderizador) {
+            if(camara && renderizador && contenedor3D) {
                 camara.aspect = contenedor3D.clientWidth / contenedor3D.clientHeight;
                 camara.updateProjectionMatrix();
                 renderizador.setSize(contenedor3D.clientWidth, contenedor3D.clientHeight);
