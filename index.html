@@ -206,13 +206,12 @@
         }
 
         .tech-item h4 {
-            font-size: 18px;
+            font-size: 19px;
             color: var(--primary);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
         }
 
         .tech-item p {
@@ -221,47 +220,40 @@
             line-height: 1.6;
         }
 
-        .sub-items {
-            margin-top: 10px;
-            margin-left: 15px;
-            font-size: 15px;
-            color: var(--text);
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .sub-items span {
-            font-family: monospace;
-            background: rgba(46, 125, 122, 0.08);
-            color: var(--primary);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-
         .endpoint-block {
             background: #F8FAFA;
-            border-left: 4px solid var(--primary);
-            padding: 12px;
-            margin-top: 10px;
-            border-radius: 0 8px 8px 0;
+            border: 1px solid rgba(170, 184, 190, 0.3);
+            padding: 10px 14px;
+            margin-top: 8px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .endpoint-title {
-            font-size: 15px;
+        .endpoint-route {
+            font-size: 15.5px;
+            font-family: monospace;
             font-weight: 700;
-            margin-bottom: 6px;
+            color: var(--text);
+            white-space: nowrap;
         }
 
-        .endpoint-title .method {
+        .endpoint-desc {
+            font-size: 15px;
+            color: var(--textLight);
+        }
+
+        .method {
             color: #FFFFFF;
-            padding: 2px 6px;
+            padding: 3px 8px;
             border-radius: 4px;
             font-size: 12px;
-            margin-right: 6px;
+            font-weight: bold;
+            font-family: -apple-system, sans-serif;
+            min-width: 65px;
+            text-align: center;
             display: inline-block;
-            vertical-align: middle;
         }
 
         .method.post { background: #10B981; }
@@ -269,19 +261,26 @@
         .method.patch { background: #F59E0B; }
         .method.delete { background: #EF4444; }
 
-        .endpoint-desc {
-            font-size: 14.5px;
-            color: var(--textLight);
-            margin-bottom: 6px;
+        .tabla-db-box {
+            background: #FFFFFF;
+            border: 1px solid rgba(170, 184, 190, 0.4);
+            border-radius: 10px;
+            padding: 14px;
+            margin-top: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.01);
         }
 
-        .endpoint-responses {
-            font-size: 13.5px;
-            border-top: 1px dashed rgba(170, 184, 190, 0.4);
-            padding-top: 6px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
+        .tabla-db-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .tabla-db-desc {
+            font-size: 15.5px;
+            color: var(--textLight);
+            line-height: 1.5;
         }
 
         .visual-box {
@@ -353,312 +352,75 @@
 
         <div class="col-dinamica">
 
-            <!-- PANEL 1: DOCUMENTACIÓN COMPLETA DE ENDPOINTS -->
             <div class="panel active">
                 <div class="info-tecnica">
-                    <h3>Especificación de la API REST</h3>
+                    <h3>Servidor Backend y Modelo de Datos</h3>
                     <div class="tech-stack">
                         
-                        <!-- MÓDULO AUTENTICACIÓN -->
                         <div class="tech-item">
-                            <h4>Autenticación y Registro (/auth)</h4>
+                            <h4>Catálogo de Endpoints de la API REST</h4>
+                            <p style="margin-bottom: 12px;">Estructura de endpoints desarrollados bajo el framework Flask, organizados mediante blueprints modulares protegidos por middleware de validación JWT.</p>
                             
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method post">POST</span>/auth/authcheck</div>
-                                <div class="endpoint-desc">Comprueba que el endpoint de autenticación está activo.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: { "message": "Endpoint de autenticación listo" }</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method post">POST</span>/auth/register</div>
-                                <div class="endpoint-desc">Registra un nuevo usuario. Envía código de verificación por correo.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>201</b>: { "message": "Usuario creado correctamente", "token": "jwt", "id": 1 }</div>
-                                    <div><b>400</b>: Faltan datos obligatorios / Correo ya registrado / Nickname ya registrado</div>
-                                    <div><b>500</b>: Error enviando el correo de verificación / Error registrando el usuario</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method post">POST</span>/auth/login</div>
-                                <div class="endpoint-desc">Autentica al usuario con email/nickname y contraseña.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: { "message": "Login exitoso", "token": "jwt", "user": { ... } }</div>
-                                    <div><b>400</b>: Faltan credenciales</div>
-                                    <div><b>401</b>: Usuario no registrado / Contraseña inválida / Cuenta de Google (sin contraseña local)</div>
-                                    <div><b>403</b>: Cuenta no verificada — debe verificar el correo primero</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method post">POST</span>/auth/change/password</div>
-                                <div class="endpoint-desc">Restablece la contraseña del usuario.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: { "message": "Cambio de contraseña completado" }</div>
-                                    <div><b>400</b>: Faltan credenciales</div>
-                                    <div><b>401</b>: Usuario no registrado en el sistema</div>
-                                    <div><b>422</b>: No puedes usar la misma contraseña</div>
-                                    <div><b>500</b>: Error actualizando la contraseña</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method post">POST</span>/auth/verify</div>
-                                <div class="endpoint-desc">Verifica el email con el código de 6 dígitos recibido por correo.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: { "message": "Correo verificado correctamente.", "token": "jwt", "user": { ... } } o cuenta ya verificada</div>
-                                    <div><b>400</b>: Cuerpo JSON requerido / Sin código pendiente / Código incorrecto</div>
-                                    <div><b>404</b>: Usuario no encontrado</div>
-                                    <div><b>500</b>: Error verificando el correo</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method post">POST</span>/auth/resend-code</div>
-                                <div class="endpoint-desc">Reenvía el código de verificación por correo.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: { "message": "Nuevo código enviado. Revisa tu correo." } o cuenta ya verificada</div>
-                                    <div><b>404</b>: Usuario no encontrado</div>
-                                    <div><b>500</b>: Error enviando el correo / Error reenviando el código</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method delete">DELETE</span>/auth/delete-account <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Elimina permanentemente la cuenta del usuario autenticado y todos sus datos.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: { "message": "Cuenta eliminada correctamente" }</div>
-                                    <div><b>404</b>: Usuario no encontrado</div>
-                                    <div><b>500</b>: Error al eliminar la cuenta</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method post">POST</span>/auth/google</div>
-                                <div class="endpoint-desc">Autentica o registra un usuario mediante Google OAuth2 (token de Google).</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: { "message": "Inicio de sesión con Google completado", "token": "jwt", "user": { ... } }</div>
-                                    <div><b>400</b>: Cuerpo JSON requerido / Token de Google no proporcionado</div>
-                                    <div><b>401</b>: Token de Google inválido o expirado</div>
-                                    <div><b>500</b>: Error en autenticación con Google</div>
-                                </div>
-                            </div>
+                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/auth/authcheck</div><div class="endpoint-desc">Comprueba la disponibilidad del servicio de autenticación.</div></div>
+                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/auth/register</div><div class="endpoint-desc">Registra un nuevo usuario en la plataforma y despacha el código de verificación por correo.</div></div>
+                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/auth/login</div><div class="endpoint-desc">Valida credenciales (email/nickname y contraseña) devolviendo el token de sesión.</div></div>
+                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/auth/change/password</div><div class="endpoint-desc">Modifica y actualiza la contraseña del usuario autenticado.</div></div>
+                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/auth/verify</div><div class="endpoint-desc">Verifica la cuenta del usuario mediante un código OTP de 6 dígitos enviado por email.</div></div>
+                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/auth/resend-code</div><div class="endpoint-desc">Genera y reenvía un nuevo código de verificación por correo electrónico.</div></div>
+                            <div class="endpoint-block"><span class="method delete">DELETE</span><div class="endpoint-route">/auth/delete-account</div><div class="endpoint-desc">Elimina de forma permanente la cuenta y purga en cascada los datos vinculados.</div></div>
+                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/auth/google</div><div class="endpoint-desc">Gestión de inicio de sesión y registro mediante federación de identidades con Google OAuth2.</div></div>
+                            
+                            <div class="endpoint-block"><span class="method patch">PATCH</span><div class="endpoint-route">/users/update</div><div class="endpoint-desc">Modifica parcialmente la información de perfil del usuario en sesión.</div></div>
+                            <div class="endpoint-block"><span class="method get">GET</span><div class="endpoint-route">/users/user</div><div class="endpoint-desc">Obtiene la ficha técnica y configuración del perfil del usuario autenticado.</div></div>
+                            
+                            <div class="endpoint-block"><span class="method get">GET</span><div class="endpoint-route">/activities/</div><div class="endpoint-desc">Recupera la lista completa de actividades asociadas al usuario.</div></div>
+                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/activities/activity</div><div class="endpoint-desc">Crea e introduce una nueva tarea planificada en el sistema.</div></div>
+                            <div class="endpoint-block"><span class="method patch">PATCH</span><div class="endpoint-route">/activities/</div><div class="endpoint-desc">Actualiza campos específicos de una actividad existente identificada por ID.</div></div>
+                            <div class="endpoint-block"><span class="method delete">DELETE</span><div class="endpoint-route">/activities/</div><div class="endpoint-desc">Borra de forma física una actividad del historial de planificación.</div></div>
+                            <div class="endpoint-block"><span class="method get">GET</span><div class="endpoint-route">/activities/type</div><div class="endpoint-desc">Lista los tipos y categorías de enfoque preconfigurados.</div></div>
+                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/activities/type</div><div class="endpoint-desc">Da de alta una nueva categoría de enfoque con sus tiempos base de trabajo/descanso.</div></div>
+                            <div class="endpoint-block"><span class="method patch">PATCH</span><div class="endpoint-route">/activities/type/</div><div class="endpoint-desc">Actualiza la configuración temporal de un tipo de actividad específico.</div></div>
+                            <div class="endpoint-block"><span class="method delete">DELETE</span><div class="endpoint-route">/activities/type/</div><div class="endpoint-desc">Elimina un tipo de actividad del listado del usuario.</div></div>
+                            
+                            <div class="endpoint-block"><span class="method get">GET</span><div class="endpoint-route">/history/check</div><div class="endpoint-desc">Comprueba el estado operativo del módulo de métricas e histórico.</div></div>
+                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/history/calculate</div><div class="endpoint-desc">Procesa de forma agregada el rendimiento del usuario en un rango temporal y guarda las métricas.</div></div>
+                            <div class="endpoint-block"><span class="method get">GET</span><div class="endpoint-route">/history/weekly-dashboard</div><div class="endpoint-desc">Genera el consolidado analítico de la semana en curso para renderizar gráficos de rendimiento.</div></div>
+                            <div class="endpoint-block"><span class="method get">GET</span><div class="endpoint-route">/history/</div><div class="endpoint-desc">Obtiene la colección histórica completa de reportes de productividad.</div></div>
+                            <div class="endpoint-block"><span class="method get">GET</span><div class="endpoint-route">/history/recommendations</div><div class="endpoint-desc">Invoca al motor analítico para obtener pautas de optimización de tiempos personalizadas.</div></div>
+                            
+                            <div class="endpoint-block"><span class="method get">GET</span><div class="endpoint-route">/bot/check</div><div class="endpoint-desc">Verifica el latido de la API de comunicación con el hardware.</div></div>
+                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/bot/pair</div><div class="endpoint-desc">Vincula un dispositivo físico Focus.Bot al perfil de usuario mediante la dirección MAC.</div></div>
+                            <div class="endpoint-block"><span class="method get">GET</span><div class="endpoint-route">/bot/getByUser</div><div class="endpoint-desc">Recupera la lista de robots emparejados, su estado y última fecha de sincronización.</div></div>
+                            <div class="endpoint-block"><span class="method patch">PATCH</span><div class="endpoint-route">/bot/</div><div class="endpoint-desc">Actualiza de manera parcial el estado o el nombre descriptivo de un robot.</div></div>
+                            <div class="endpoint-block"><span class="method delete">DELETE</span><div class="endpoint-route">/bot/</div><div class="endpoint-desc">Ejecuta un borrado lógico del robot en el sistema, desvinculándolo del usuario.</div></div>
+                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/bot/command</div><div class="endpoint-desc">Canaliza comandos manuales de depuración directa al bróker MQTT del dispositivo.</div></div>
                         </div>
 
-                        <!-- MÓDULO USUARIOS -->
                         <div class="tech-item">
-                            <h4>Gestión de Usuarios (/users)</h4>
+                            <h4>Modelo de Datos en PostgreSQL (Supabase)</h4>
+                            <p>Estructura relacional diseñada con restricciones estrictas de clave foránea e integridad referencial en cascada para salvaguardar los datos de productividad:</p>
                             
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method patch">PATCH</span>/users/update <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Actualiza parcialmente el perfil del usuario autenticado.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: { "message": "Usuario actualizado correctamente." }</div>
-                                    <div><b>400</b>: Correo ya registrado por otro usuario / Nickname ya registrado por otro usuario</div>
-                                    <div><b>404</b>: Usuario no encontrado</div>
-                                    <div><b>500</b>: Error actualizando el usuario</div>
-                                </div>
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">Entidad: Users</div>
+                                <div class="tabla-db-desc">Registra las cuentas de usuario, credenciales locales cifradas, tokens federados, zonas horarias e información de perfil del ecosistema.</div>
                             </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method get">GET</span>/users/user <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Obtiene los datos del perfil del usuario autenticado.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: { "user": { user_id, first_name, last_name, nickname, email, phone, timezone, profile_img, name_detail, description_detail, severity } }</div>
-                                    <div><b>404</b>: Usuario no encontrado</div>
-                                </div>
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">Entidad: Activities</div>
+                                <div class="tabla-db-desc">Almacena las tareas planificadas e individuales de los usuarios, guardando sus estados dinámicos y la relación con su categoría de enfoque.</div>
+                            </div>
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">Entidad: Activity_Types</div>
+                                <div class="tabla-db-desc">Define los moldes o metodologías de tiempo (por ejemplo, técnicas de concentración personalizadas) configurando la duración exacta de trabajo y los descansos.</div>
+                            </div>
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">Entidad: Bots</div>
+                                <div class="tabla-db-desc">Diccionario físico de dispositivos. Almacena la clave primaria natural basada en la dirección MAC del ESP32, estado de red, nombres personalizados y fecha de última conexión.</div>
+                            </div>
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">Entidad: Histories</div>
+                                <div class="tabla-db-desc">Repositorio de series temporales donde se calculan de manera agregada los bloques consolidados de productividad para acelerar las consultas analíticas del Dashboard.</div>
                             </div>
                         </div>
-
-                        <!-- MÓDULO ACTIVIDADES -->
-                        <div class="tech-item">
-                            <h4>Módulo de Actividades (/activities)</h4>
-                            
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method get">GET</span>/activities/ <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Lista todas las actividades del usuario autenticado o filtra por ID concreto.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: Array de actividades del usuario / Objeto con los datos de la actividad</div>
-                                    <div><b>401</b>: Token inválido o no proporcionado</div>
-                                    <div><b>404</b>: Actividad no encontrada o no pertenece al usuario</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method post">POST</span>/activities/activity <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Crea una nueva actividad para el usuario autenticado.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>201</b>: Actividad creada correctamente</div>
-                                    <div><b>400</b>: Datos de actividad inválidos</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method patch">PATCH</span>/activities/ <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Actualiza parcialmente una actividad existente.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: Actividad actualizada</div>
-                                    <div><b>404</b>: Actividad no encontrada</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method delete">DELETE</span>/activities/ <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Elimina una actividad del usuario autenticado.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: ActividadBox eliminada correctamente</div>
-                                    <div><b>404</b>: Actividad no encontrada</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method get">GET</span>/activities/type <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Lista todos los tipos de actividad del usuario.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: Array de tipos de actividad</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method post">POST</span>/activities/type <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Crea un nuevo tipo de actividad.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>201</b>: Tipo de actividad creado</div>
-                                    <div><b>400</b>: Datos inválidos</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method patch">PATCH</span>/activities/type/ <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Actualiza parcialmente un tipo de actividad.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: Tipo actualizado</div>
-                                    <div><b>404</b>: Tipo no encontrado</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method delete">DELETE</span>/activities/type/ <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Elimina un tipo de actividad.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: Tipo eliminado</div>
-                                    <div><b>404</b>: Tipo no encontrado</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- MÓDULO HISTORIAL -->
-                        <div class="tech-item">
-                            <h4>Analítica e Historial (/history)</h4>
-                            
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method get">GET</span>/history/check</div>
-                                <div class="endpoint-desc">Comprueba que la API de historial está activa.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: { "message": "API de historial lista" }</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method post">POST</span>/history/calculate <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Calcula y guarda un registro de historial para el rango de fechas indicado.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: Registro calculado y guardado</div>
-                                    <div><b>400</b>: Rango de fechas inválido</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method get">GET</span>/history/weekly-dashboard <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Devuelve los datos estructurados del dashboard semanal del usuario.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: Datos del dashboard semanal</div>
-                                    <div><b>404</b>: Sin datos para la semana actual</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method get">GET</span>/history/ <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Lista todos los registros de historial u obtiene uno concreto mediante su ID.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: Array de registros / Objeto con los datos del registro</div>
-                                    <div><b>404</b>: Registro no encontrado</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method get">GET</span>/history/recommendations <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Devuelve recomendaciones personalizadas basadas en el historial del usuario.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: Objeto con recomendaciones dinámicas</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- MÓDULO BOT -->
-                        <div class="tech-item">
-                            <h4>Control y Sincronización del Dispositivo (/bot)</h4>
-                            
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method get">GET</span>/bot/check</div>
-                                <div class="endpoint-desc">Comprueba que la API de bot está activa.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: { "msg": "Api bot lista" }</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method post">POST</span>/bot/pair <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Vincula un Focus.Bot al usuario autenticado mediante su dirección MAC.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>201</b>: { "message": "Focus.Bot vinculado con éxito", "bot": { id, name } }</div>
-                                    <div><b>403</b>: El bot ya pertenece a otro usuario</div>
-                                    <div><b>500</b>: Error al guardar en la base de datos</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method get">GET</span>/bot/getByUser <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Lista todos los bots vinculados al usuario autenticado.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: { "bots": [ { bot_id, name, mac_address, status, last_sync } ] } o lista vacía</div>
-                                    <div><b>404</b>: Usuario no registrado en el sistema</div>
-                                    <div><b>500</b>: Error en la carga de bots</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method patch">PATCH</span>/bot/ <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Actualiza parcialmente los datos de un bot (nombre, configuraciones).</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: { "message": "Bot actualizado con éxito." }</div>
-                                    <div><b>404</b>: Bot no encontrado</div>
-                                    <div><b>500</b>: Error editando el bot</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method delete">DELETE</span>/bot/ <small style="color:var(--primary)">@token_required</small></div>
-                                <div class="endpoint-desc">Desvincula (borrado lógico) un bot del usuario autenticado.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: { "message": "Bot desvinculado con éxito" }</div>
-                                    <div><b>404</b>: Bot no encontrado</div>
-                                    <div><b>500</b>: Error al desvincular el Bot</div>
-                                </div>
-                            </div>
-
-                            <div class="endpoint-block">
-                                <div class="endpoint-title"><span class="method post">POST</span>/bot/command</div>
-                                <div class="endpoint-desc">Envía un comando MQTT de prueba a un Focus.Bot identificado por su MAC address.</div>
-                                <div class="endpoint-responses">
-                                    <div><b>200</b>: { "message": "Comando enviado a " }</div>
-                                    <div><b>503</b>: No se pudo reconectar con el Broker MQTT</div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
                 <div class="visual-box">
@@ -666,33 +428,59 @@
                 </div>
             </div>
 
-            <!-- PANEL 2: HARDWARE Y FIRMWARE -->
             <div class="panel">
                 <div class="info-tecnica">
                     <h3>Desarrollo Hardware y Arquitectura de Firmware</h3>
                     <div class="tech-stack">
+                        
                         <div class="tech-item">
-                            <h4>Módulos Electrónicos del Robot</h4>
-                            <p>El núcleo electrónico está integrado por el microcontrolador ESP32 (placa NodeMCU) acoplado de manera óptima a periféricos dedicados:</p>
-                            <div class="sub-items">
-                                <div>• Pantalla circular TFT de 1.28" (controlador GC9A01) mediante bus SPI.</div>
-                                <div>• Módulo de audio DFPlayer Mini comunicado mediante bus UART con salida a altavoz de 4 Ω.</div>
-                                <div>• Sensor táctil capacitivo TTP223 para el reconocimiento gestual autónomo.</div>
+                            <h4>Delegación de Responsabilidades en Firmware (C++)</h4>
+                            <p style="margin-bottom: 12px;">Para garantizar el mantenimiento del sistema IoT y evitar un código acoplado monolítico, el firmware se estructura aplicando separación de responsabilidades en archivos independientes:</p>
+                            
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">FocusBot.ino (Módulo Principal)</div>
+                                <div class="tabla-db-desc">Orquesta el ciclo de vida general del dispositivo. Inicializa los buses de comunicación y gobierna las rutinas básicas del bucle de ejecución principal (<code>setup</code> y <code>loop</code>) invocando a los subsistemas de forma asíncrona.</div>
+                            </div>
+                            
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">Config.h (Variables Globales y Pines)</div>
+                                <div class="tabla-db-desc">Centraliza la definición del mapa de pines del ESP32 (SPI, UART, GPIO táctil), los tiempos de los umbrales de gestos y los parámetros inmutables del servidor de mensajería MQTT.</div>
+                            </div>
+
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">FSM.h / FSM.cpp (Máquina de Estados Finitos)</div>
+                                <div class="tabla-db-desc">Contiene el núcleo lógico operacional del robot. Define el comportamiento reactivo frente a los eventos, el cálculo del avance del temporizador y las transiciones entre los estados (IDLE, RQST, FOCUS, SLEEP).</div>
+                            </div>
+
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">DisplayModule.h / DisplayModule.cpp (Capa Gráfica)</div>
+                                <div class="tabla-db-desc">Aísla por completo la lógica de la pantalla TFT GC9A01 utilizando la librería descriptiva de gráficos. Maneja de forma exclusiva el dibujado de las expresiones visuales (ojos, parpadeos, alertas) y la geometría analítica de los arcos de progreso.</div>
+                            </div>
+
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">AudioModule.h / AudioModule.cpp (Gestión de Audio)</div>
+                                <div class="tabla-db-desc">Encapsula los comandos por hardware enviados mediante comandos binarios UART al DFPlayer Mini, gestionando la reproducción, pausa y selección de las pistas musicales de concentración de la tarjeta microSD.</div>
+                            </div>
+
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">NetworkModule.h / NetworkModule.cpp (Comunicaciones)</div>
+                                <div class="tabla-db-desc">Administra el estado de la conexión de red: el levantamiento automático del Portal Cautivo en modo Access Point si falla la conexión y la persistencia de las credenciales de red local.</div>
+                            </div>
+
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">MqttModule.h / MqttModule.cpp (Mensajería en tiempo real)</div>
+                                <div class="tabla-db-desc">Implementa la capa cliente de mensajería ligera. Se encarga de procesar las suscripciones de los canales estructurados y parsear las cadenas de configuración JSON recibidas desde el servidor.</div>
                             </div>
                         </div>
+
+                        <div class="tech-item">
+                            <h4>Módulos Electrónicos del Robot</h4>
+                            <p>El chasis físico contiene el microcontrolador ESP32 conectado de manera óptima a periféricos dedicados: Pantalla circular TFT de 1.28" mediante bus SPI, módulo de audio DFPlayer Mini comunicado mediante bus UART hacia un altavoz de 4 Ω, y el sensor táctil capacitivo TTP223 para el reconocimiento gestual autónomo.</p>
+                        </div>
+
                         <div class="tech-item">
                             <h4>Protecciones de Hardware y Eficiencia</h4>
                             <p>Inserción de una resistencia de 1 kΩ en la línea RX del DFPlayer Mini para erradicar ruidos por picos de tensión residual. Uso estratégico de un transistor NPN BC547 actuando como interruptor Low-Side para conmutar por hardware el pin BLK de la pantalla, logrando apagar físicamente la retroiluminación en modo SLEEP para maximizar el ahorro energético.</p>
-                        </div>
-                        <div class="tech-item">
-                            <h4>Máquina de Estados Finitos (FSM)</h4>
-                            <p>El firmware en C++ implementa una FSM jerárquica para controlar de forma asíncrona el comportamiento y expresiones del bot:</p>
-                            <div class="sub-items">
-                                <div>• <b>IDLE</b>: Espera activa con animación de parpadeo cíclico (3500ms abierto / 150ms cerrado).</div>
-                                <div>• <b>RQST</b>: Petición entrante, alterna un ojo abierto y otro entrecerrado de forma dinámica.</div>
-                                <div>• <b>FOCUS/REST</b>: Bloques de trabajo y descanso controlando arcos de progreso geométricos.</div>
-                                <div>• <b>SLEEP</b>: Apagado energético y desactiva la retroiluminación tras 10 minutos de inactividad.</div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -701,7 +489,6 @@
                 </div>
             </div>
 
-            <!-- PANEL 3: CONECTIVIDAD & RED (LENGUAJE SUTIL Y SIN PALABRA ATÓMICA) -->
             <div class="panel">
                 <div class="info-tecnica">
                     <h3>Capa de Red y Protocolos de Comunicación</h3>
@@ -721,7 +508,7 @@
                         </div>
                         <div class="tech-item">
                             <h4>Integridad en el Flujo de Ejecución</h4>
-                            <p>La inyección del comando de inicio encapsula parámetros en formato JSON estructurado conteniendo duraciones y metadatos de audio. El dispositivo asume de forma local e independiente la ejecución del tiempo, y al finalizar calcula las métricas publicando el resultado, garantizando la persistencia íntegra de la traza de productividad aun ante microcortes temporales de red.</p>
+                            <p>La inyección del comando de inicio encapsula parámetros en formato JSON estructurado conteniendo duraciones y metadatos de audio. El dispositivo asume de forma local e independiente la ejecución del tiempo, y al finalizar calcula las métricas publicando el resultado, gartantizando la persistencia íntegra de la traza de productividad aun ante microcortes temporales de red.</p>
                         </div>
                     </div>
                 </div>
