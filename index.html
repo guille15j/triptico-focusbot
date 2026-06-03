@@ -62,13 +62,13 @@
             background: var(--background);
             border: 1px solid var(--placeholder);
             color: var(--textLight);
-            padding: 12px 24px;
+            padding: 12px 20px;
             border-radius: 30px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.25s ease;
-            min-width: 200px;
+            min-width: 170px;
             text-align: center;
             -webkit-tap-highlight-color: transparent;
         }
@@ -322,7 +322,8 @@
         <div class="nav-tabs">
             <div class="tab-btn active" onclick="cambiarPanel(0)">1. API & Base de Datos</div>
             <div class="tab-btn" onclick="cambiarPanel(1)">2. Hardware & Firmware</div>
-            <div class="tab-btn" onclick="cambiarPanel(2)">3. Conectividad & Red</div>
+            <div class="tab-btn" onclick="cambiarPanel(2)">3. App Multiplataforma</div>
+            <div class="tab-btn" onclick="cambiarPanel(3)">4. Red & Contenedores</div>
         </div>
     </header>
 
@@ -332,14 +333,15 @@
             <div class="brand-box">
                 <h2>Focus.Bot</h2>
                 <div class="eslogan">DEEP IN YOUR FOCUS</div>
-                <p class="intro-p">Sistema IoT integral compuesto por un dispositivo robótico físico, infraestructura backend y aplicación multiplataforma para la gestión de la productividad.</p>
+                <p class="intro-p">Sistema IoT integral compuesto por un dispositivo robótico físico, infraestructura backend federada y aplicación multiplataforma para la gestión del rendimiento.</p>
                 
                 <ul class="specs-lista">
                     <li>Unidad Central: ESP32</li>
                     <li>Backend: Flask (Python)</li>
                     <li>Base de Datos: PostgreSQL</li>
                     <li>App Móvil: React Native (Expo)</li>
-                    <li>Protocolo Red: MQTT / REST</li>
+                    <li>Proxy & Servidor: NGINX</li>
+                    <li>Protocolos: MQTT / REST</li>
                 </ul>
             </div>
             
@@ -359,13 +361,13 @@
                         
                         <div class="tech-item">
                             <h4>Catálogo de Endpoints de la API REST</h4>
-                            <p style="margin-bottom: 12px;">Estructura de endpoints desarrollados bajo el framework Flask, organizados mediante blueprints modulares protegidos por middleware de validación JWT.</p>
+                            <p style="margin-bottom: 12px;">Estructura de enrutamiento desarrollada bajo Flask organizados mediante blueprints modulares protegidos por middleware de validación e inyección JWT.</p>
                             
                             <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/auth/authcheck</div><div class="endpoint-desc">Comprueba la disponibilidad del servicio de autenticación.</div></div>
                             <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/auth/register</div><div class="endpoint-desc">Registra un nuevo usuario en la plataforma y despacha el código de verificación por correo.</div></div>
-                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/auth/login</div><div class="endpoint-desc">Valida credenciales (email/nickname y contraseña) devolviendo el token de sesión.</div></div>
+                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/auth/login</div><div class="endpoint-desc">Valida credenciales locales devolviendo el token de sesión JWT firmado.</div></div>
                             <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/auth/change/password</div><div class="endpoint-desc">Modifica y actualiza la contraseña del usuario autenticado.</div></div>
-                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/auth/verify</div><div class="endpoint-desc">Verifica la cuenta del usuario mediante un código OTP de 6 dígitos enviado por email.</div></div>
+                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/auth/verify</div><div class="endpoint-desc">Verifica la cuenta mediante un código OTP de 6 dígitos enviado por email.</div></div>
                             <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/auth/resend-code</div><div class="endpoint-desc">Genera y reenvía un nuevo código de verificación por correo electrónico.</div></div>
                             <div class="endpoint-block"><span class="method delete">DELETE</span><div class="endpoint-route">/auth/delete-account</div><div class="endpoint-desc">Elimina de forma permanente la cuenta y purga en cascada los datos vinculados.</div></div>
                             <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/auth/google</div><div class="endpoint-desc">Gestión de inicio de sesión y registro mediante federación de identidades con Google OAuth2.</div></div>
@@ -379,21 +381,14 @@
                             <div class="endpoint-block"><span class="method delete">DELETE</span><div class="endpoint-route">/activities/</div><div class="endpoint-desc">Borra de forma física una actividad del historial de planificación.</div></div>
                             <div class="endpoint-block"><span class="method get">GET</span><div class="endpoint-route">/activities/type</div><div class="endpoint-desc">Lista los tipos y categorías de enfoque preconfigurados.</div></div>
                             <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/activities/type</div><div class="endpoint-desc">Da de alta una nueva categoría de enfoque con sus tiempos base de trabajo/descanso.</div></div>
-                            <div class="endpoint-block"><span class="method patch">PATCH</span><div class="endpoint-route">/activities/type/</div><div class="endpoint-desc">Actualiza la configuración temporal de un tipo de actividad específico.</div></div>
-                            <div class="endpoint-block"><span class="method delete">DELETE</span><div class="endpoint-route">/activities/type/</div><div class="endpoint-desc">Elimina un tipo de actividad del listado del usuario.</div></div>
                             
-                            <div class="endpoint-block"><span class="method get">GET</span><div class="endpoint-route">/history/check</div><div class="endpoint-desc">Comprueba el estado operativo del módulo de métricas e histórico.</div></div>
-                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/history/calculate</div><div class="endpoint-desc">Procesa de forma agregada el rendimiento del usuario en un rango temporal y guarda las métricas.</div></div>
-                            <div class="endpoint-block"><span class="method get">GET</span><div class="endpoint-route">/history/weekly-dashboard</div><div class="endpoint-desc">Genera el consolidado analítico de la semana en curso para renderizar gráficos de rendimiento.</div></div>
-                            <div class="endpoint-block"><span class="method get">GET</span><div class="endpoint-route">/history/</div><div class="endpoint-desc">Obtiene la colección histórica completa de reportes de productividad.</div></div>
+                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/history/calculate</div><div class="endpoint-desc">Procesa de forma agregada el rendimiento del usuario en un rango temporal.</div></div>
+                            <div class="endpoint-block"><span class="method get">GET</span><div class="endpoint-route">/history/weekly-dashboard</div><div class="endpoint-desc">Genera el consolidado analítico semanal para renderizar gráficos de rendimiento.</div></div>
                             <div class="endpoint-block"><span class="method get">GET</span><div class="endpoint-route">/history/recommendations</div><div class="endpoint-desc">Invoca al motor analítico para obtener pautas de optimización de tiempos personalizadas.</div></div>
                             
-                            <div class="endpoint-block"><span class="method get">GET</span><div class="endpoint-route">/bot/check</div><div class="endpoint-desc">Verifica el latido de la API de comunicación con el hardware.</div></div>
                             <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/bot/pair</div><div class="endpoint-desc">Vincula un dispositivo físico Focus.Bot al perfil de usuario mediante la dirección MAC.</div></div>
-                            <div class="endpoint-block"><span class="method get">GET</span><div class="endpoint-route">/bot/getByUser</div><div class="endpoint-desc">Recupera la lista de robots emparejados, su estado y última fecha de sincronización.</div></div>
-                            <div class="endpoint-block"><span class="method patch">PATCH</span><div class="endpoint-route">/bot/</div><div class="endpoint-desc">Actualiza de manera parcial el estado o el nombre descriptivo de un robot.</div></div>
-                            <div class="endpoint-block"><span class="method delete">DELETE</span><div class="endpoint-route">/bot/</div><div class="endpoint-desc">Ejecuta un borrado lógico del robot en el sistema, desvinculándolo del usuario.</div></div>
-                            <div class="endpoint-block"><span class="method post">POST</span><div class="endpoint-route">/bot/command</div><div class="endpoint-desc">Canaliza comandos manuales de depuración directa al bróker MQTT del dispositivo.</div></div>
+                            <div class="endpoint-block"><span class="method get">GET</span><div class="endpoint-route">/bot/getByUser</div><div class="endpoint-desc">Recupera la lista de robots emparejados, su estado y última sincronización.</div></div>
+                            <div class="endpoint-block"><span class="method delete">DELETE</span><div class="endpoint-route">/bot/</div><div class="endpoint-desc">Ejecuta un borrado lógico del robot desvinculándolo del usuario.</div></div>
                         </div>
 
                         <div class="tech-item">
@@ -491,29 +486,101 @@
 
             <div class="panel">
                 <div class="info-tecnica">
-                    <h3>Capa de Red y Protocolos de Comunicación</h3>
+                    <h3>Frontend: Arquitectura de la Aplicación Móvil</h3>
                     <div class="tech-stack">
+                        
                         <div class="tech-item">
-                            <h4>Punto de Acceso y Portal Cautivo</h4>
-                            <p>Al arrancar en ausencia de red, entra en modo Access Point (estado AP) levantando un servidor DNS interno y un Portal Cautivo. Proporciona un formulario HTML nativo incrustado en memoria flash que escanea el entorno (redes 2.4 GHz) para guardar de manera persistente en LittleFS las credenciales nuevas.</p>
-                        </div>
-                        <div class="tech-item">
-                            <h4>Sincronización Bidireccional MQTT</h4>
-                            <p>Sincronización en tiempo real mediante arquitectura Publish/Subscribe a través de un bróker MQTT aislado por la dirección MAC del hardware:</p>
-                            <div class="sub-items">
-                                <div>• Comandos recibidos (Bot se suscribe): <span>focusapp/{mac}/command</span></div>
-                                <div>• Cambios de estado (Bot publica): <span>focusapp/{mac}/status</span></div>
-                                <div>• Resultados de sesión (Bot publica): <span>focusapp/{mac}/result</span></div>
+                            <h4>Delegación de Responsabilidades en React Native</h4>
+                            <p style="margin-bottom: 12px;">Para conseguir un desarrollo robusto, escalable y evitar el antipatrón de componentes masivos, la aplicación móvil desacopla de forma estricta el estado global, la lógica de negocio y la interfaz de usuario:</p>
+                            
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">1. Context (Capa de Estado Global Permanente)</div>
+                                <div class="tabla-db-desc">Actúa como la fuente única de verdad del ecosistema de la app (ej. <code>AuthContext</code>, <code>BotContext</code>). Evita el prop-drilling proveyendo de forma descendente datos esenciales como el token JWT del usuario en sesión, las configuraciones de los temas visuales o el listado de robots vinculados, persistiendo el estado entre pantallas mediante <code>AsyncStorage</code>.</div>
+                            </div>
+                            
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">2. Custom Hooks (Capa de Lógica Reutilizable y Negocio)</div>
+                                <div class="tabla-db-desc">Encapsulan todo el comportamiento asíncrono y los efectos colaterales (ej. <code>useFetchActivities</code>, <code>useMqttClient</code>). Se encargan de las llamadas imperativas a la API con Axios, la gestión de errores del servidor y la suscripción directa a eventos. De esta forma, aíslan la lógica puramente técnica fuera de la visualización.</div>
+                            </div>
+
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">3. Componentes Visuales (Capa de Presentación Pura)</div>
+                                <div class="tabla-db-desc">Su única función es declarar "cómo" debe renderizarse la interfaz de usuario basándose en las propiedades recibidas. Consumen los Hooks y el Contexto de manera declarativa, pintando las vistas nativas (<code>View</code>, <code>Text</code>, <code>FlatList</code>) y reaccionando a las interacciones del usuario de manera fluida.</div>
                             </div>
                         </div>
+
                         <div class="tech-item">
-                            <h4>Integridad en el Flujo de Ejecución</h4>
-                            <p>La inyección del comando de inicio encapsula parámetros en formato JSON estructurado conteniendo duraciones y metadatos de audio. El dispositivo asume de forma local e independiente la ejecución del tiempo, y al finalizar calcula las métricas publicando el resultado, gartantizando la persistencia íntegra de la traza de productividad aun ante microcortes temporales de red.</p>
+                            <h4>Diferencias Arquitectónicas Críticas: Entorno Móvil vs Web</h4>
+                            <p style="margin-bottom: 10px;">A pesar de compartir la sintaxis JavaScript/React, el desarrollo móvil nativo mediante Expo/React Native introduce divergencias radicales en comparación con un entorno Web clásico:</p>
+                            
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">Motor de Renderizado e Interfaz de Usuario</div>
+                                <div class="tabla-db-desc"><strong>Web:</strong> Renderiza sobre el DOM (Document Object Model) usando etiquetas HTML estándar estructuradas con CSS nativo.<br><strong>Móvil:</strong> No existe el HTML ni el DOM. Los componentes abstractos se traducen en tiempo de ejecución a vistas nativas de iOS (UIKit) y Android (Android Views), garantizando un rendimiento a 60 FPS inalcanzable por una webview tradicional.</div>
+                            </div>
+
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">Navegación e Historial de Rutas</div>
+                                <div class="tabla-db-desc"><strong>Web:</strong> Se fundamenta en rutas lineales basadas en texto URL administradas por el navegador web.<br><strong>Móvil:</strong> Utiliza una arquitectura basada en pilas reales (<strong>Stack Navigation</strong>) y pestañas (Tabs), donde las pantallas no se destruyen por completo al navegar, sino que se superponen en memoria en un búfer nativo para permitir transiciones gestuales laterales.</div>
+                            </div>
+
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">Ciclo de Vida y Almacenamiento Local</div>
+                                <div class="tabla-db-desc"><strong>Web:</strong> Dispone de persistencia básica síncrona en LocalStorage. El ciclo de vida depende de la pestaña del navegador.<br><strong>Móvil:</strong> Requiere almacenamiento asíncrono e hilos dedicados mediante <code>AsyncStorage</code> o SQLite local. Gestiona eventos complejos del sistema operativo como la suspensión en segundo plano (*Background Tasks*) si el usuario bloquea el móvil, manteniendo vivo el hilo de comunicación de red de forma optimizada.</div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="visual-box">
-                    <img src="multimedia/flujo_mqtt.png" alt="Flujo de Comunicación" class="esquema-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<p style=\'color:var(--textLight);font-size:15px;\'>[ Render del Diagrama de Flujo y Arquitectura de Comunicación ]</p>'">
+                    <img src="multimedia/arquitectura_app.png" alt="Arquitectura React Native" class="esquema-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<p style=\'color:var(--textLight);font-size:15px;\'>[ Arquitectura Frontend: Context ➔ Custom Hooks ➔ Componentes Nativos ]</p>'">
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="info-tecnica">
+                    <h3>Infraestructura de Red, Proxies y Dockerización</h3>
+                    <div class="tech-stack">
+                        
+                        <div class="tech-item">
+                            <h4>Orquestación y Seguridad en Docker: Red <code>focus-net</code></h4>
+                            <p>Todo el ecosistema del backend se encuentra encapsulado en contenedores independientes mediante Docker Compose, comunicados internamente a través de una red virtual dedicada de tipo Bridge llamada <strong>focus-net</strong>.</p>
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">Aislamiento Estricto & DNS Interno</div>
+                                <div class="tabla-db-desc">Los contenedores de la base de datos (PostgreSQL) y el bróker de mensajería no exponen sus puertos al exterior. La comunicación se realiza de forma interna y segura. Flask localiza la base de datos mediante resolución de nombres automática de Docker (ej. <code>connect("postgres://...")</code>), evitando el uso de IPs estáticas vulnerables.</div>
+                            </div>
+                        </div>
+
+                        <div class="tech-item">
+                            <h4>Proxy Inverso con NGINX</h4>
+                            <p>NGINX se sitúa en la frontera de la infraestructura como el único punto de entrada público (Puertos 80 / 443), protegiendo directamente al servidor de aplicaciones Flask (Gunicorn).</p>
+                            <div class="sub-items" style="margin-top: 8px; font-size: 15.5px; color: var(--textLight); display: flex; flex-direction: column; gap: 5px;">
+                                <div>• <strong>Seguridad:</strong> Gestión centralizada de certificados SSL/TLS y políticas CORS estrictas para la App móvil.</div>
+                                <div>• <strong>Rendimiento:</strong> Balanceo de carga y balanceo de peticiones HTTP de manera ultra-eficiente antes de delegar el tráfico al backend.</div>
+                            </div>
+                        </div>
+
+                        <div class="tech-item">
+                            <h4>Módulo GIS (Geolocalización Analítica)</h4>
+                            <p>El sistema aprovecha las tecnologías de Sistemas de Información Geográfica (GIS) para enriquecer las métricas de enfoque recopiladas desde el cliente React Native.</p>
+                            <div class="tabla-db-box">
+                                <div class="tabla-db-title">Análisis de Entorno Spatial</div>
+                                <div class="tabla-db-desc">Al iniciar un bloque de concentración, la aplicación captura las coordenadas geográficas (Latitud/Longitud). El backend almacena estos puntos geométricos en el histórico, permitir al motor analítico correlacionar el nivel de productividad del usuario según su ubicación física (Trabajo, Hogar, Universidad).</div>
+                            </div>
+                        </div>
+
+                        <div class="tech-item">
+                            <h4>Sincronización Bidireccional MQTT</h4>
+                            <p>Comunicación en tiempo real de baja latencia mediante arquitectura Publish/Subscribe aislada por la dirección MAC del dispositivo:</p>
+                            <div class="sub-items" style="margin-top: 5px; font-size: 15px; color: var(--textLight);">
+                                <div>• Comandos entrantes (Suscripción del Bot): <span style="font-family: monospace; font-weight:700; color:var(--text)">focusapp/{mac}/command</span></div>
+                                <div>• Reportes de Estado (Publicación del Bot): <span style="font-family: monospace; font-weight:700; color:var(--text)">focusapp/{mac}/status</span></div>
+                                <div>• Cierre de Sesión (Publicación del Bot): <span style="font-family: monospace; font-weight:700; color:var(--text)">focusapp/{mac}/result</span></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="visual-box">
+                    <img src="multimedia/arquitectura_red.png" alt="Arquitectura de Red y Contenedores" class="esquema-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<p style=\'color:var(--textLight);font-size:15px;\'>[ Diagrama de Infraestructura: NGINX ➔ Red focus-net ➔ Contenedores ]</p>'">
                 </div>
             </div>
 
