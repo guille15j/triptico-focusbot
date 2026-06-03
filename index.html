@@ -401,7 +401,6 @@
     </div>
 
     <script>
-        // LÓGICA DE NAVEGACIÓN
         const botones = document.querySelectorAll('.tab-btn');
         const paneles = document.querySelectorAll('.panel');
 
@@ -412,14 +411,16 @@
             paneles[index].classList.add('active');
         }
 
-        // MOTOR 3D (Adaptado para renderizar modelo.obj de la chasis)
+        // MOTOR 3D CON CORRECCIÓN DE ESCALA INTELIGENTE Y CÁMARA LEJANA
         const contenedor3D = document.getElementById('container-3d');
         let escena, camara, renderizador, controles;
 
         function inicializar3D() {
             escena = new THREE.Scene();
-            camara = new THREE.PerspectiveCamera(45, contenedor3D.clientWidth / contenedor3D.clientHeight, 0.1, 1000);
-            camara.position.set(0, 0, 5);
+            
+            // Colocamos la cámara inicialmente más atrás (distancia 8) para que contenga modelos grandes
+            camara = new THREE.PerspectiveCamera(40, contenedor3D.clientWidth / contenedor3D.clientHeight, 0.1, 1000);
+            camara.position.set(0, 1.5, 7);
 
             renderizador = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderizador.setSize(contenedor3D.clientWidth, contenedor3D.clientHeight);
@@ -430,11 +431,15 @@
             controles.enableDamping = true;
             controles.dampingFactor = 0.05;
             controles.maxPolarAngle = Math.PI / 1.5;
+            
+            // Restricciones de zoom para que el usuario no rompa la vista en el iPad Air
+            controles.minDistance = 2;
+            controles.maxDistance = 15;
 
-            const luzAmbiental = new THREE.AmbientLight(0xffffff, 0.85);
+            const luzAmbiental = new THREE.AmbientLight(0xffffff, 0.9);
             escena.add(luzAmbiental);
 
-            const luzDireccional = new THREE.DirectionalLight(0xffffff, 0.6);
+            const luzDireccional = new THREE.DirectionalLight(0xffffff, 0.5);
             luzDireccional.position.set(5, 10, 7);
             escena.add(luzDireccional);
 
@@ -446,30 +451,43 @@
                 objLoader.setMaterials(materiales);
                 objLoader.setPath('multimedia/');
                 objLoader.load('modelo.obj', function (objeto) {
-                    const box = new THREE.Box3().setFromObject(objeto);
-                    const center = box.getCenter(new THREE.Vector3());
-                    objeto.position.sub(center);
-                    escena.add(objeto);
-                    objeto.rotation.y = Math.PI;
+                    ajustarYEscalarModelo(objeto);
                 }, null, () => cargarObjSinMaterial());
             }, () => cargarObjSinMaterial());
 
             animate();
         }
 
+        // FUNCIÓN CLAVE: Mide el tamaño real del chasis (.obj) y lo escala proporcionalmente para la caja
+        function ajustarYEscalarModelo(objeto) {
+            const box = new THREE.Box3().setFromObject(objeto);
+            const size = box.getSize(new THREE.Vector3());
+            const center = box.getCenter(new THREE.Vector3());
+            
+            // Centrar el objeto en el origen de coordenadas (0,0,0)
+            objeto.position.sub(center);
+            
+            // Encontrar la dimensión más grande del modelo de Fusion360
+            const maxDim = Math.max(size.x, size.y, size.z);
+            
+            // Queremos que el bot ocupe un tamaño normalizado de ~2.8 unidades en el canvas de Three.js
+            const escalaDeseada = 2.8 / maxDim;
+            objeto.scale.set(escalaDeseada, escalaDeseada, escalaDeseada);
+            
+            escena.add(objeto);
+            objeto.rotation.y = Math.PI; // Orientación inicial frontal
+        }
+
         function cargarObjSinMaterial() {
             const objLoader = new THREE.OBJLoader();
             objLoader.setPath('multimedia/');
             objLoader.load('modelo.obj', function (objeto) {
-                const box = new THREE.Box3().setFromObject(objeto);
-                const center = box.getCenter(new THREE.Vector3());
-                objeto.position.sub(center);
                 objeto.traverse(function (child) {
                     if (child.isMesh) child.material = new THREE.MeshStandardMaterial({color: 0x2E7D7A, roughness: 0.5});
                 });
-                escena.add(objeto);
+                ajustarYEscalarModelo(objeto);
             }, null, () => {
-                contenedor3D.innerHTML = "<p style='color:var(--textLight); text-align:center; padding: 20px; font-size:13px;'>[ Visualización 3D Interactiva del Chasis en Fusion360 ]</p>";
+                contenedor3D.innerHTML = "<p style='color:var(--textLight); text-align:center; padding: 20px; font-size:13px;'>[ Visualización 3D Interactiva del Chasis ]</p>";
             });
         }
 
